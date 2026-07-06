@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -2394,28 +2395,125 @@ public partial class Page2 : ContentPage
                     VerticalOptions = LayoutOptions.Center,
                     HorizontalOptions = LayoutOptions.Fill,
                 };
+                var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
+
+                double widthPx = displayInfo.Width;     // 画面幅（px）
+                double heightPx = displayInfo.Height;   // 画面高さ（px）
+                double density = displayInfo.Density;   // 画面密度
+
+                double wimgWidth = widthPx / density;   // 画面幅（dp）
+                double imgWidth = 0;
+                double imgHeight = 0;
+                int iwidth = (int)wimgWidth;
+                string straddfile = "";
+                imgWidth = 350;
+                imgHeight = 226;
+                straddfile = "_1";
+                //                if (iwidth >= 350 && iwidth > 0)
+                //                {
+                //                    imgWidth = 350;
+                //                    imgHeight = 226;
+                //                    straddfile = "_1";
+                //                }
+                if (iwidth >= 400 && iwidth > 350)
+                {
+                    imgWidth = 400;
+                    imgHeight = 258;
+                    straddfile = "_2";
+                }
+                else if (iwidth >= 450 && iwidth > 400)
+                {
+                    imgWidth = 450;
+                    imgHeight = 290;
+                    straddfile = "_3";
+                }
+                else if (iwidth >= 500 && iwidth > 450)
+                {
+                    imgWidth = 500;
+                    imgHeight = 322;
+                    straddfile = "_4";
+                }
+                else if (iwidth >= 550 && iwidth > 500)
+                {
+                    imgWidth = 550;
+                    imgHeight = 354;
+                    straddfile = "_5";
+                }
+                else if (iwidth >= 600 && iwidth > 550)
+                {
+                    imgWidth = 600;
+                    imgHeight = 387;
+                    straddfile = "_6";
+                }
+                else if (iwidth >= 650 && iwidth > 600)
+                {
+                    imgWidth = 650;
+                    imgHeight = 419;
+                    straddfile = "_7";
+                }
+                else if (iwidth >= 700 && iwidth > 650)
+                {
+                    imgWidth = 700;
+                    imgHeight = 451;
+                    straddfile = "_8";
+                }
+                else if (iwidth >= 750 && iwidth > 700)
+                {
+                    imgWidth = 750;
+                    imgHeight = 484;
+                    straddfile = "_9";
+                }
+                else
+                {
+                    imgWidth = 800;
+                    imgHeight = 516;
+                    straddfile = "";
+                }
+
+
                 absLay = new AbsoluteLayout
                 {
                     HorizontalOptions = LayoutOptions.Fill,
                     VerticalOptions = LayoutOptions.Fill,
                     Margin = new Thickness(0),
                     ZIndex = 0,
-
                 };
-                var uri = clsGlobalVar.GetCurURL() + "img/instruction/" + lstKaisou._Header._ImageFile;
+                string cacheBuster = $"?t={DateTime.UtcNow.Ticks}";
+                var uri = clsGlobalVar.GetCurURL() + "img/instruction/" + lstKaisou._Header._ImageFile + straddfile;
+                int ino = lstKaisou._Header._ImageFile.IndexOf(".", 0);
+                if (ino > -1)
+                {
+                    uri = clsGlobalVar.GetCurURL() + "img/instruction/" + lstKaisou._Header._ImageFile.Substring(0, ino) + straddfile + lstKaisou._Header._ImageFile.Substring(ino);
+                }
+
+
+
+
+
+
+
+
+
+
+                Debug.WriteLine(uri);
+                Trace.WriteLine(uri);
+
                 imgView = new Image
                 {
-                    Source = ImageSource.FromUri(new Uri(uri)),
+                    Source = ImageSource.FromUri(new Uri(uri + cacheBuster)),
+
                     Aspect = Aspect.AspectFit,
-                    HorizontalOptions = LayoutOptions.Fill,
-                    VerticalOptions = LayoutOptions.Fill,
+                    HorizontalOptions = LayoutOptions.Start,
+                    VerticalOptions = LayoutOptions.StartAndExpand,
+                    HeightRequest = imgHeight,
+                    WidthRequest = imgWidth,
+                    MinimumHeightRequest = imgHeight,
+                    MinimumWidthRequest = imgWidth,
                 };
                 int z = 0;
                 absLay.Children.Add(imgView);
                 //imgView.ZIndex = 0;
-                z++;
-                absLay.SetLayoutFlags(imgView, Microsoft.Maui.Layouts.AbsoluteLayoutFlags.PositionProportional);
-                absLay.SetLayoutBounds(imgView, new Rect(0, 0, 800, 800));
+
                 foreach (clsKaisou wKaisou in lstKaisou._Datas)
                 {
                     Button butn = new Button

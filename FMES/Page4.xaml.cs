@@ -1290,6 +1290,7 @@ public partial class Page4 : ContentPage
                 double wimgWidth = widthPx / density;   // 画面幅（dp）
                 double imgWidth = 0;
                 double imgHeight = 0;
+                double pos_rate = 7.0 / 16.0;
                 int iwidth = (int)wimgWidth;
                 string straddfile = "";
                 imgWidth = 350;
@@ -1306,48 +1307,56 @@ public partial class Page4 : ContentPage
                     imgWidth = 400;
                     imgHeight = 258;
                     straddfile = "_2";
+                    pos_rate = 1.0 / 2.0;
                 }
                 else if (iwidth >= 450 && iwidth > 400)
                 {
                     imgWidth = 450;
                     imgHeight = 290;
                     straddfile = "_3";
+                    pos_rate = 9.0 / 16.0;
                 }
                 else if (iwidth >= 500 && iwidth > 450)
                 {
                     imgWidth = 500;
                     imgHeight = 322;
                     straddfile = "_4";
+                    pos_rate = 5.0 / 8.0;
                 }
                 else if (iwidth >= 550 && iwidth > 500)
                 {
                     imgWidth = 550;
                     imgHeight = 354;
                     straddfile = "_5";
+                    pos_rate = 11.0 / 16.0;
                 }
                 else if (iwidth >= 600 && iwidth > 550)
                 {
                     imgWidth = 600;
                     imgHeight = 387;
                     straddfile = "_6";
+                    pos_rate = 3.0 / 4.0;
                 }
                 else if (iwidth >= 650 && iwidth > 600)
                 {
                     imgWidth = 650;
                     imgHeight = 419;
                     straddfile = "_7";
+                    pos_rate = 13.0 / 16.0;
                 }
                 else if (iwidth >= 700 && iwidth > 650)
                 {
                     imgWidth = 700;
                     imgHeight = 451;
                     straddfile = "_8";
+                    pos_rate = 7.0 / 8.0;
                 }
                 else if (iwidth >= 750 && iwidth > 700)
                 {
                     imgWidth = 750;
                     imgHeight = 484;
                     straddfile = "_9";
+                    pos_rate = 1.0;
                 }
                 else
                 {
@@ -1356,7 +1365,9 @@ public partial class Page4 : ContentPage
                     straddfile = "";
                 }
 
-
+                // 元画像の実ピクセルサイズ（正しい値に置換）
+                double origW_px = imgWidth;
+                double origH_px = imgHeight;
                 absLay = new AbsoluteLayout
                     {
                     HorizontalOptions = LayoutOptions.Fill,
@@ -1388,9 +1399,9 @@ public partial class Page4 : ContentPage
                 {
                     Source = ImageSource.FromUri(new Uri(uri + cacheBuster)),
 
-                    Aspect = Aspect.AspectFit,
-                    HorizontalOptions = LayoutOptions.Start,
-                    VerticalOptions = LayoutOptions.StartAndExpand,
+                    //Aspect = Aspect.AspectFit,
+                    HorizontalOptions = LayoutOptions.Fill,
+                    VerticalOptions = LayoutOptions.Fill,
                     HeightRequest = imgHeight,
                     WidthRequest = imgWidth,
                     MinimumHeightRequest = imgHeight,
@@ -1398,55 +1409,88 @@ public partial class Page4 : ContentPage
                 };
                 int z = 0;
                 absLay.Children.Add(imgView);
+
                 //imgView.ZIndex = 0;
                 z++;
-                absLay.SetLayoutFlags(imgView, Microsoft.Maui.Layouts.AbsoluteLayoutFlags.PositionProportional);
+                absLay.SetLayoutFlags(imgView, Microsoft.Maui.Layouts.AbsoluteLayoutFlags.None);
                 absLay.SetLayoutBounds(imgView, new Rect(0, 0, imgWidth, imgHeight));
 
+                // 画像・ボタン配置の作成・配置ロジック（置換用）
+                double origW = imgWidth; // 元画像の実ピクセル幅（正しい値に置き換えてください）
+                double origH = imgHeight; // 元画像の実ピクセル高さ
+                                          // 一時リストにボタンと元座標(px)を保存
+                var buttonInfos = new List<(Button btn, double srcX_px, double srcY_px, double btnW_dp, double btnH_dp)>();
                 foreach (clsKaisou wKaisou in lstKaisou._Datas)
                 {
-                    double baseFontsize = 22;
+                    double baseFontsize = 14;//22
                     Button butn = new Button
                     {
                         Text = wKaisou._kaisouName,
-                        //FontSize = 14,
                         BorderColor = Colors.LightGray,
                         BorderWidth = 1.5,
                         HeightRequest = 48,
                         CornerRadius = 12,
-                        Margin = new Thickness(20, 0, 20, 12),
-
                         FontSize = baseFontsize,
-                        //WidthRequest = 50,
                         ZIndex = ++z,
-                        WidthRequest = baseFontsize * 1.7 * wKaisou._kaisouName.Length,
-
+                        WidthRequest = baseFontsize * wKaisou._kaisouName.Length,
                         BackgroundColor = GetPassButtonBColor9(wKaisou._during),
                         TextColor = GetPassButtonTColor(wKaisou._iPass),
-                        //VerticalOptions = LayoutOptions.Center,
-                        //            HorizontalOptions = LayoutOptions.Fill,
-
-                        //TextColor = GetTextColor(wKaisou),
-                        //BackgroundColor = GetBackColor(wKaisou),
                     };
                     butn.Clicked += ItemButtonClicked;
                     Lstbutton.Add(butn);
-                    absLay.SetLayoutFlags(butn, Microsoft.Maui.Layouts.AbsoluteLayoutFlags.PositionProportional);
-                    absLay.SetLayoutBounds(butn, new Rect((wKaisou._IconButton.X + 700) / 1772, (wKaisou._IconButton.Y + 500) / 1772, (baseFontsize * 1.7 * wKaisou._kaisouName.Length), 70));
-                    //absLay.SetLayoutBounds(butn, new Rect((wKaisou._IconButton.X + 700) / 1772, (wKaisou._IconButton.Y + 500) / 1772, (12* wKaisou._kaisouName.Length), 70));
-                    //absLay.SetLayoutBounds(imgView, new Rect(0 / 2, 0 / 2, 1500, 1500));
-                    absLay.Children.Add(butn);
-                    //butn.ZIndex = ++z ;
-                    //butn.TranslateTo(0, 0);
-                    //                    butn.Opacity = 0;
-                    //                  butn.FadeTo(1, 4000);
-                    //butn.RelScaleTo(250);
-                    //butn.TranslateTo(0, 0);
-                    //butn.TranslateTo(wKaisou._IconButton.X / 2, wKaisou._IconButton.Y / 2);
 
-                    //absLay.Children.Add(butn, new Point(wKaisou._IconButton.X / 2, wKaisou._IconButton.Y / 2));
+                    // 元座標は px 単位と仮定（必要ならここで調整）
+                    double srcX_px = wKaisou._IconButton.X* pos_rate + (-16);
+                    //double srcX_px = wKaisou._IconButton.X / 2 + (-16 - 28.6) - (baseFontsize * wKaisou._kaisouName.Length);
+                    //double srcY_px = wKaisou._IconButton.Y / 2 + (-17 - 98.4);
+                    double srcY_px = wKaisou._IconButton.Y* pos_rate + (-17);
+
+                    // 一旦追加（位置は SizeChanged で設定）
+                    absLay.Children.Add(butn);
+                    double btnW_dp = butn.WidthRequest > 0 ? butn.WidthRequest : baseFontsize * wKaisou._kaisouName.Length*2;
+                    double btnH_dp = butn.HeightRequest > 0 ? butn.HeightRequest : 48;
+                    buttonInfos.Add((butn, srcX_px, srcY_px, btnW_dp, btnH_dp));
                 }
 
+                // 画像の実表示サイズが確定したらボタンを配置
+                imgView.SizeChanged += (s, e) =>
+                {
+                    double dispW_dp = imgView.Width;
+                    double dispH_dp = imgView.Height;
+                    if (dispW_dp <= 0 || dispH_dp <= 0) return;
+
+                    // px -> dp
+                    double origW_dp = origW_px / density;
+                    double origH_dp = origH_px / density;
+
+                    // AspectFit のスケール
+                    double scale = Math.Min(dispW_dp / origW_dp, dispH_dp / origH_dp);
+
+                    // 表示される画像サイズと余白（letterbox）
+                    double displayedImageW = origW_dp * scale;
+                    double displayedImageH = origH_dp * scale;
+                    double offsetX = (dispW_dp - displayedImageW) / 2.0;
+                    double offsetY = (dispH_dp - displayedImageH) / 2.0;
+
+                    // imgView が absLay 内で置かれた左上座標（SetLayoutBounds で置いているなら通常 0,0）
+                    var imgBounds = AbsoluteLayout.GetLayoutBounds(imgView);
+                    double imgLeft = imgBounds.X;
+                    double imgTop = imgBounds.Y;
+
+                    foreach (var info in buttonInfos)
+                    {
+                        var btn = info.btn;
+                        // 元座標(px) -> dp に変換してスケール適用
+                        double srcX_dp = info.srcX_px / density;
+                        double srcY_dp = info.srcY_px / density;
+
+                        double placedX = imgLeft + offsetX + srcX_dp * scale;
+                        double placedY = imgTop + offsetY + srcY_dp * scale;
+
+                        AbsoluteLayout.SetLayoutFlags(btn, Microsoft.Maui.Layouts.AbsoluteLayoutFlags.None);
+                        AbsoluteLayout.SetLayoutBounds(btn, new Rect(placedX, placedY, info.btnW_dp, info.btnH_dp));
+                    }
+                };
                 buttonEnd = new Button
                 {
                     //Text = AppResources.IDM032,
