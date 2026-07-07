@@ -358,7 +358,47 @@ namespace FMES
 #endif
             return wCol;
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
+            try
+            {
+                System.Diagnostics.Debug.WriteLine($"SashizuPage OnAppearing: dropdown2 items={dropdown2?.Items.Count}");
+
+                // Windows ではフォント指定と FontSize を丸めて表示を安定させる
+                if (OperatingSystem.IsWindows())
+                {
+                    if (dropdown2 != null)
+                    {
+                        dropdown2.FontFamily = "Segoe UI";
+                        dropdown2.FontSize = Math.Round(dropdown2.FontSize);
+                    }
+                }
+
+                // 視覚ツリー確定後に SelectedIndex を安全に設定し、選択済みなら Title をクリア
+                Microsoft.Maui.ApplicationModel.MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    if (dropdown2 != null && dropdown2.Items.Count > 0)
+                    {
+                        if (dropdown2.SelectedIndex < 0 || dropdown2.SelectedIndex >= dropdown2.Items.Count)
+                        {
+                            // 必要なら既定表示を 0 にする（空のプレースホルダを残したい場合は -1 に変更）
+                            dropdown2.SelectedIndex = 0;
+                        }
+
+                        if (dropdown2.SelectedIndex >= 0)
+                        {
+                            dropdown2.Title = string.Empty;
+                        }
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"SashizuPage OnAppearing exception: {ex}");
+            }
+        }
         async void MenuButtonClicked(object sender, EventArgs s)
         {
             clsGlobalVar.g_BackPage = "SashizuPage";

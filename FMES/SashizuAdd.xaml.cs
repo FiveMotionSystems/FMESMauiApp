@@ -358,7 +358,48 @@ namespace FMES
                 Content = sv;
             }
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
+            try
+            {
+                System.Diagnostics.Debug.WriteLine($"SashizuAdd OnAppearing: dropdown1 items={dropdown1?.Items.Count}");
+
+                // Windows のときはフォントとサイズを明示してレンダリングを安定させる
+                if (OperatingSystem.IsWindows())
+                {
+                    if (dropdown1 != null)
+                    {
+                        dropdown1.FontFamily = "Segoe UI";
+                        dropdown1.FontSize = Math.Round(dropdown1.FontSize);
+                    }
+                }
+
+                // 視覚ツリー確定後に安全に SelectedIndex を設定（既に選択されていれば変更しない）
+                Microsoft.Maui.ApplicationModel.MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    if (dropdown1 != null && dropdown1.Items.Count > 0)
+                    {
+                        if (dropdown1.SelectedIndex < 0 || dropdown1.SelectedIndex >= dropdown1.Items.Count)
+                        {
+                            // 必要に応じて既定値を -1（プレースホルダを残す）に変更できます
+                            dropdown1.SelectedIndex = 0;
+                        }
+
+                        if (dropdown1.SelectedIndex >= 0)
+                        {
+                            // 選択が有効なら Title をクリアして表示を正しくする
+                            dropdown1.Title = string.Empty;
+                        }
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"SashizuAdd OnAppearing exception: {ex}");
+            }
+        }
         private Color GetBackColor(int index)
         {
             Color wCol = Colors.White;

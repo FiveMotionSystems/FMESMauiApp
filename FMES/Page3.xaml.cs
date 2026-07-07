@@ -1174,80 +1174,85 @@ public partial class Page3 : ContentPage
                 double imgWidth = 0;
                 double imgHeight = 0;
                 double pos_rate = 7.0 / 16.0;
+
+
+
                 int iwidth = (int)wimgWidth;
                 string straddfile = "";
-                imgWidth = 350;
-                imgHeight = 226;
-                straddfile = "_1";
-                //                if (iwidth >= 350 && iwidth > 0)
-                //                {
-                //                    imgWidth = 350;
-                //                    imgHeight = 226;
-                //                    straddfile = "_1";
-                //                }
-                if (iwidth >= 400 && iwidth > 350)
+                imgWidth = 800;
+                imgHeight = 516;
+                straddfile = "";
+                //              
+                if (iwidth >= 800)
                 {
-                    imgWidth = 400;
-                    imgHeight = 258;
-                    straddfile = "_2";
-                    pos_rate = 1.0 / 2.0;
+                    imgWidth = 800;
+                    imgHeight = 516;
+                    straddfile = "";
+                    pos_rate = 1.0;
                 }
-                else if (iwidth >= 450 && iwidth > 400)
-                {
-                    imgWidth = 450;
-                    imgHeight = 290;
-                    straddfile = "_3";
-                    pos_rate = 9.0 / 16.0;
-                }
-                else if (iwidth >= 500 && iwidth > 450)
-                {
-                    imgWidth = 500;
-                    imgHeight = 322;
-                    straddfile = "_4";
-                    pos_rate = 5.0 / 8.0;
-                }
-                else if (iwidth >= 550 && iwidth > 500)
-                {
-                    imgWidth = 550;
-                    imgHeight = 354;
-                    straddfile = "_5";
-                    pos_rate = 11.0 / 16.0;
-                }
-                else if (iwidth >= 600 && iwidth > 550)
-                {
-                    imgWidth = 600;
-                    imgHeight = 387;
-                    straddfile = "_6";
-                    pos_rate = 3.0 / 4.0;
-                }
-                else if (iwidth >= 650 && iwidth > 600)
-                {
-                    imgWidth = 650;
-                    imgHeight = 419;
-                    straddfile = "_7";
-                    pos_rate = 13.0 / 16.0;
-                }
-                else if (iwidth >= 700 && iwidth > 650)
-                {
-                    imgWidth = 700;
-                    imgHeight = 451;
-                    straddfile = "_8";
-                    pos_rate = 7.0 / 8.0;
-                }
-                else if (iwidth >= 750 && iwidth > 700)
+                else if (iwidth >= 750)
                 {
                     imgWidth = 750;
                     imgHeight = 484;
                     straddfile = "_9";
                     pos_rate = 1.0;
                 }
+                else if (iwidth >= 700)
+                {
+                    imgWidth = 700;
+                    imgHeight = 451;
+                    straddfile = "_8";
+                    pos_rate = 7.0 / 8.0;
+                }
+                else if (iwidth >= 650)
+                {
+                    imgWidth = 650;
+                    imgHeight = 419;
+                    straddfile = "_7";
+                    pos_rate = 13.0 / 16.0;
+                }
+                else if (iwidth >= 600)
+                {
+                    imgWidth = 600;
+                    imgHeight = 387;
+                    straddfile = "_6";
+                    pos_rate = 3.0 / 4.0;
+                }
+                else if (iwidth >= 550)
+                {
+                    imgWidth = 550;
+                    imgHeight = 354;
+                    straddfile = "_5";
+                    pos_rate = 11.0 / 16.0;
+                }
+                else if (iwidth >= 500)
+                {
+                    imgWidth = 500;
+                    imgHeight = 322;
+                    straddfile = "_4";
+                    pos_rate = 5.0 / 8.0;
+                }
+                else if (iwidth >= 450)
+                {
+                    imgWidth = 450;
+                    imgHeight = 290;
+                    straddfile = "_3";
+                    pos_rate = 9.0 / 16.0;
+                }
+                else if (iwidth >= 400)
+                {
+                    imgWidth = 400;
+                    imgHeight = 258;
+                    straddfile = "_2";
+                    pos_rate = 1.0 / 2.0;
+                }
                 else
                 {
-                    imgWidth = 800;
-                    imgHeight = 516;
-                    straddfile = "";
+                    imgWidth = 350;
+                    imgHeight = 226;
+                    straddfile = "_1";
+                    pos_rate = 1.0;
                 }
-
                 // 元画像の実ピクセルサイズ（正しい値に置換）
                 double origW_px = imgWidth;
                 double origH_px = imgHeight;
@@ -1278,6 +1283,12 @@ public partial class Page3 : ContentPage
                 Debug.WriteLine(uri);
                 Trace.WriteLine(uri);
 
+                if (OperatingSystem.IsWindows() && imgWidth == 800)
+                {
+                    imgWidth = widthPx;
+                    imgHeight = heightPx;
+
+                }
                 imgView = new Image
                 {
                     Source = ImageSource.FromUri(new Uri(uri + cacheBuster)),
@@ -1305,7 +1316,7 @@ public partial class Page3 : ContentPage
                 var buttonInfos = new List<(Button btn, double srcX_px, double srcY_px, double btnW_dp, double btnH_dp)>();
                 foreach (clsKaisou wKaisou in lstKaisou._Datas)
                 {
-                    double baseFontsize = 14;//22
+                    double baseFontsize = 22;//22
                     Button butn = new Button
                     {
                         Text = wKaisou._kaisouName,
@@ -1315,7 +1326,7 @@ public partial class Page3 : ContentPage
                         CornerRadius = 12,
                         FontSize = baseFontsize,
                         ZIndex = ++z,
-                        WidthRequest = baseFontsize * wKaisou._kaisouName.Length,
+                        WidthRequest = baseFontsize * wKaisou._kaisouName.Length * 1.5,
                         BackgroundColor = GetPassButtonBColor9(wKaisou._during),
                         TextColor = GetPassButtonTColor(wKaisou._iPass),
                     };
@@ -1330,7 +1341,7 @@ public partial class Page3 : ContentPage
 
                     // 一旦追加（位置は SizeChanged で設定）
                     absLay.Children.Add(butn);
-                    double btnW_dp = butn.WidthRequest > 0 ? butn.WidthRequest : baseFontsize * wKaisou._kaisouName.Length * 2;
+                    double btnW_dp = butn.WidthRequest > 0 ? butn.WidthRequest : baseFontsize * wKaisou._kaisouName.Length * 1.5;
                     double btnH_dp = butn.HeightRequest > 0 ? butn.HeightRequest : 48;
                     buttonInfos.Add((butn, srcX_px, srcY_px, btnW_dp, btnH_dp));
                 }

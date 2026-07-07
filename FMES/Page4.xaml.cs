@@ -1305,6 +1305,7 @@ public partial class Page4 : ContentPage
                     imgWidth = 800;
                     imgHeight = 516;
                     straddfile = "";
+                    pos_rate = 1.0;
                 }
                 else if (iwidth >= 750)
                 {
@@ -1401,7 +1402,12 @@ public partial class Page4 : ContentPage
 
                 Debug.WriteLine(uri);
                 Trace.WriteLine(uri);
+                if (OperatingSystem.IsWindows() && imgWidth == 800)
+                {
+                    imgWidth = widthPx;
+                    imgHeight = heightPx;
 
+                }
                 imgView = new Image
                 {
                     Source = ImageSource.FromUri(new Uri(uri + cacheBuster)),
@@ -1429,7 +1435,7 @@ public partial class Page4 : ContentPage
                 var buttonInfos = new List<(Button btn, double srcX_px, double srcY_px, double btnW_dp, double btnH_dp)>();
                 foreach (clsKaisou wKaisou in lstKaisou._Datas)
                 {
-                    double baseFontsize = 14;//22
+                    double baseFontsize = 22;//22
                     Button butn = new Button
                     {
                         Text = wKaisou._kaisouName,
@@ -1439,7 +1445,7 @@ public partial class Page4 : ContentPage
                         CornerRadius = 12,
                         FontSize = baseFontsize,
                         ZIndex = ++z,
-                        WidthRequest = baseFontsize * wKaisou._kaisouName.Length,
+                        WidthRequest = baseFontsize * wKaisou._kaisouName.Length*1.5,
                         BackgroundColor = GetPassButtonBColor9(wKaisou._during),
                         TextColor = GetPassButtonTColor(wKaisou._iPass),
                     };
@@ -1454,7 +1460,7 @@ public partial class Page4 : ContentPage
 
                     // ˆê’U’Ç‰ÁiˆÊ’u‚Í SizeChanged ‚ÅÝ’èj
                     absLay.Children.Add(butn);
-                    double btnW_dp = butn.WidthRequest > 0 ? butn.WidthRequest : baseFontsize * wKaisou._kaisouName.Length*2;
+                    double btnW_dp = butn.WidthRequest > 0 ? butn.WidthRequest : baseFontsize * wKaisou._kaisouName.Length*1.5;
                     double btnH_dp = butn.HeightRequest > 0 ? butn.HeightRequest : 48;
                     buttonInfos.Add((butn, srcX_px, srcY_px, btnW_dp, btnH_dp));
                 }
