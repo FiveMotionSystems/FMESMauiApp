@@ -1291,79 +1291,86 @@ public partial class Page4 : ContentPage
                 double imgWidth = 0;
                 double imgHeight = 0;
                 double pos_rate = 7.0 / 16.0;
+
+
+
                 int iwidth = (int)wimgWidth;
                 string straddfile = "";
-                imgWidth = 350;
-                imgHeight = 226;
-                straddfile = "_1";
-//                if (iwidth >= 350 && iwidth > 0)
-//                {
-//                    imgWidth = 350;
-//                    imgHeight = 226;
-//                    straddfile = "_1";
-//                }
-                if (iwidth >= 400 && iwidth > 350)
+                imgWidth = 800;
+                imgHeight = 516;
+                straddfile = "";
+                //              
+                if (iwidth >= 800)
                 {
-                    imgWidth = 400;
-                    imgHeight = 258;
-                    straddfile = "_2";
-                    pos_rate = 1.0 / 2.0;
+                    imgWidth = 800;
+                    imgHeight = 516;
+                    straddfile = "";
                 }
-                else if (iwidth >= 450 && iwidth > 400)
-                {
-                    imgWidth = 450;
-                    imgHeight = 290;
-                    straddfile = "_3";
-                    pos_rate = 9.0 / 16.0;
-                }
-                else if (iwidth >= 500 && iwidth > 450)
-                {
-                    imgWidth = 500;
-                    imgHeight = 322;
-                    straddfile = "_4";
-                    pos_rate = 5.0 / 8.0;
-                }
-                else if (iwidth >= 550 && iwidth > 500)
-                {
-                    imgWidth = 550;
-                    imgHeight = 354;
-                    straddfile = "_5";
-                    pos_rate = 11.0 / 16.0;
-                }
-                else if (iwidth >= 600 && iwidth > 550)
-                {
-                    imgWidth = 600;
-                    imgHeight = 387;
-                    straddfile = "_6";
-                    pos_rate = 3.0 / 4.0;
-                }
-                else if (iwidth >= 650 && iwidth > 600)
-                {
-                    imgWidth = 650;
-                    imgHeight = 419;
-                    straddfile = "_7";
-                    pos_rate = 13.0 / 16.0;
-                }
-                else if (iwidth >= 700 && iwidth > 650)
-                {
-                    imgWidth = 700;
-                    imgHeight = 451;
-                    straddfile = "_8";
-                    pos_rate = 7.0 / 8.0;
-                }
-                else if (iwidth >= 750 && iwidth > 700)
+                else if (iwidth >= 750)
                 {
                     imgWidth = 750;
                     imgHeight = 484;
                     straddfile = "_9";
                     pos_rate = 1.0;
                 }
-                else
+                else if (iwidth >= 700)
                 {
-                    imgWidth = 800;
-                    imgHeight = 516;
-                    straddfile = "";
+                    imgWidth = 700;
+                    imgHeight = 451;
+                    straddfile = "_8";
+                    pos_rate = 7.0 / 8.0;
                 }
+                else if (iwidth >= 650)
+                {
+                    imgWidth = 650;
+                    imgHeight = 419;
+                    straddfile = "_7";
+                    pos_rate = 13.0 / 16.0;
+                }
+                else if (iwidth >= 600)
+                {
+                    imgWidth = 600;
+                    imgHeight = 387;
+                    straddfile = "_6";
+                    pos_rate = 3.0 / 4.0;
+                }
+                else if (iwidth >= 550)
+                {
+                    imgWidth = 550;
+                    imgHeight = 354;
+                    straddfile = "_5";
+                    pos_rate = 11.0 / 16.0;
+                }
+                else if (iwidth >= 500)
+                {
+                    imgWidth = 500;
+                    imgHeight = 322;
+                    straddfile = "_4";
+                    pos_rate = 5.0 / 8.0;
+                }
+                else if (iwidth >= 450)
+                {
+                    imgWidth = 450;
+                    imgHeight = 290;
+                    straddfile = "_3";
+                    pos_rate = 9.0 / 16.0;
+                }
+                else if (iwidth >= 400)
+                {
+                    imgWidth = 400;
+                    imgHeight = 258;
+                    straddfile = "_2";
+                    pos_rate = 1.0 / 2.0;
+                }
+                else {
+                    imgWidth = 350;
+                    imgHeight = 226;
+                    straddfile = "_1";
+                    pos_rate = 1.0;
+                }
+
+
+
 
                 // 元画像の実ピクセルサイズ（正しい値に置換）
                 double origW_px = imgWidth;

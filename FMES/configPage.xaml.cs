@@ -97,17 +97,20 @@ namespace FMES
 
             dropdown1 = new Picker
             {
+                //FontAttributes = FontAttributes.Bold,
                 FontSize = 15,
                 BackgroundColor = Color.FromArgb("#F8FAFC"),
                 TextColor = Color.FromArgb("#1E293B"),
+                //TextColor = Colors.Black,
                 Title = "Select",//選択してください
                 HeightRequest = 48
             };
+
             dropdown1.Items.Add("Japanese");
             dropdown1.Items.Add("English");
             dropdown1.Items.Add("Chinese");
             dropdown1.Items.Add("Korean");
-            dropdown1.SelectedIndex = clsGlobalVar.g_language;
+//            dropdown1.SelectedIndex = clsGlobalVar.g_language;
 
             var languageCard = new Frame
             {
@@ -214,7 +217,7 @@ namespace FMES
             };
             dropdown3.Items.Add("Disabled");//ログ送信しない0
             dropdown3.Items.Add("Enabled");//ログ送信しする1
-            dropdown3.SelectedIndex = clsGlobalVar.g_logWrite;
+            //dropdown3.SelectedIndex = clsGlobalVar.g_logWrite;
 
             var logCard = new Frame
             {
@@ -362,7 +365,54 @@ namespace FMES
                 }
             }
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
+            try
+            {
+                System.Diagnostics.Debug.WriteLine($"configPage OnAppearing: g_language={clsGlobalVar.g_language}, g_logWrite={clsGlobalVar.g_logWrite}, dropdown1 items={dropdown1?.Items.Count}, dropdown3 items={dropdown3?.Items.Count}");
+
+                // Windows の場合はフォントヒント改善のため明示指定（必要に応じて調整）
+                if (OperatingSystem.IsWindows())
+                {
+                    if (dropdown1 != null)
+                    {
+                        dropdown1.FontFamily = "Segoe UI";
+                        dropdown1.FontSize = Math.Round(dropdown1.FontSize);
+                    }
+                    if (dropdown3 != null)
+                    {
+                        dropdown3.FontFamily = "Segoe UI";
+                        dropdown3.FontSize = Math.Round(dropdown3.FontSize);
+                    }
+                }
+
+                // 視覚ツリー確定後に SelectedIndex を安全に設定
+                Microsoft.Maui.ApplicationModel.MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    if (dropdown1 != null && dropdown1.Items.Count > 0)
+                    {
+                        int idx = clsGlobalVar.g_language;
+                        if (idx < 0 || idx >= dropdown1.Items.Count) idx = 0; // 安全にクランプ
+                        dropdown1.SelectedIndex = idx;
+                        if (dropdown1.SelectedIndex >= 0) dropdown1.Title = string.Empty;
+                    }
+
+                    if (dropdown3 != null && dropdown3.Items.Count > 0)
+                    {
+                        int idx3 = clsGlobalVar.g_logWrite;
+                        if (idx3 < 0 || idx3 >= dropdown3.Items.Count) idx3 = 0; // 安全にクランプ
+                        dropdown3.SelectedIndex = idx3;
+                        if (dropdown3.SelectedIndex >= 0) dropdown3.Title = string.Empty;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"configPage OnAppearing exception: {ex}");
+            }
+        }
         static bool IsValidUrl(string url)
         {
             string pattern = @"^(https?|ftp)://[^\s/$.?#].[^\s]*$";
