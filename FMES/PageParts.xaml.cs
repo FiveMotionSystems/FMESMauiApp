@@ -45,9 +45,10 @@ public partial class PageParts : ContentPage
         lsthinnmoku = new clshinnmokuList();
         //clsGlobalVar.g_KouteiID = 1;    // テスト用
 
-        if (lsthinnmoku.GetList(clsGlobalVar.g_UserID, clsGlobalVar.g_SasizuNo, 2, clsGlobalVar.g_KouteiID, 0, 0, 0, clsGlobalVar.g_lastSashizuKind, clsGlobalVar.g_KouteiVer, ref srtErrMsg) == true)
-        {
-            Label wlabel3 = new Label
+        if (lsthinnmoku.GetList(clsGlobalVar.g_SasizuNo, clsGlobalVar.g_KouteiID, 0, 0, 0, clsGlobalVar.g_lastSashizuKind, clsGlobalVar.g_KouteiVer, ref srtErrMsg) == true)
+        //if (lsthinnmoku.GetList(clsGlobalVar.g_UserID, clsGlobalVar.g_SasizuNo, 2, clsGlobalVar.g_KouteiID, 0, 0, 0, clsGlobalVar.g_lastSashizuKind, clsGlobalVar.g_KouteiVer, ref srtErrMsg) == true)
+            {
+                Label wlabel3 = new Label
             {
                 Text = "test",
                 BackgroundColor = Colors.White,

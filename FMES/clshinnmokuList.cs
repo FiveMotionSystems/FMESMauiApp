@@ -9,6 +9,37 @@ namespace FMES
         public string _SasizuNo;
 
         public List<clshinmokuData> _Datas = new List<clshinmokuData>();
+        public bool GetList(string wSasizuNo, int wKouteiID, int wKouteiShousaiID, int wKensaBui, int wKensaBashoShousaiID, int wlastMode, int wVer, ref string srtErrMsg)
+        {
+            bool bRet = false;
+            int iRow = 0;
+            string wURL = clsGlobalVar.GetCurURL() + "users/getparts/" + clsGlobalVar.GetLanguageStr() + "/" + wKouteiID + "/" + wSasizuNo;
+            string strErr = string.Empty;
+            SendLog(wURL, ref strErr);
+            string strRet = clsWebUpDown.GetWebResponce(wURL);
+            if (string.IsNullOrEmpty(strRet) == false)
+            {
+                if (strRet.IndexOf("NG:") == -1)
+                {
+                    List<string> lstRec = GetRecStart(strRet);
+                    foreach (string wStr in lstRec)
+                    {
+                        clshinmokuData whinmokuData = new clshinmokuData(wStr);
+                        _Datas.Add(whinmokuData);
+                        //iRow += 1;
+                    }
+                    lstRec.Clear();
+                    lstRec = null;
+                    bRet = true;
+                }
+                else
+                {
+                    bRet = false;
+                    srtErrMsg = clsErrorMessage.GetErrMsg(strRet);
+                }
+            }
+            return bRet;
+        }
         public bool GetList(int wUserID, string wSasizuNo, int wKaisouNo, int wKouteiID, int wKouteiShousaiID, int wKensaBui, int wKensaBashoShousaiID, int wlastMode, int wVer, ref string srtErrMsg)
         {
             bool bRet = false;

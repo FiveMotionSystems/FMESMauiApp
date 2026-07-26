@@ -27,8 +27,8 @@ namespace FMES
                     List<string> lstRec = GetRecStart(strRet);
                     foreach (string wStr in lstRec)
                     {
-                            clsPartsData wParts = new clsPartsData(wStr);
-                            _Datas.Add(wParts);
+                        clsPartsData wParts = new clsPartsData(wStr);
+                        _Datas.Add(wParts);
                         //iRow += 1;
                     }
                     lstRec.Clear();

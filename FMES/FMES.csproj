@@ -25,6 +25,16 @@
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
     <AssemblyVersion>42</AssemblyVersion>
     <FileVersion>42</FileVersion>
+    <DefaultLanguage>ja-jp</DefaultLanguage>
+    <Platforms>AnyCPU;x64;ARM64</Platforms>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningEnabled>False</AppxPackageSigningEnabled>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
 
   </PropertyGroup>
 
@@ -33,7 +43,27 @@
     <ApplicationVersion>52</ApplicationVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|ARM64'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|x64'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-maccatalyst|AnyCPU'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-maccatalyst|ARM64'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-maccatalyst|x64'">
     <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
     <ApplicationVersion>52</ApplicationVersion>
   </PropertyGroup>
@@ -46,7 +76,33 @@
     <AndroidPackageFormat>apk</AndroidPackageFormat>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android35.0|ARM64'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android35.0|x64'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.19041.0|AnyCPU'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.19041.0|ARM64'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.19041.0|x64'">
     <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
     <ApplicationVersion>52</ApplicationVersion>
   </PropertyGroup>
@@ -56,7 +112,27 @@
     <ApplicationVersion>52</ApplicationVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|ARM64'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|x64'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-maccatalyst|AnyCPU'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-maccatalyst|ARM64'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-maccatalyst|x64'">
     <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
     <ApplicationVersion>52</ApplicationVersion>
   </PropertyGroup>
@@ -69,9 +145,50 @@
     <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android35.0|ARM64'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android35.0|x64'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.19041.0|AnyCPU'">
     <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
     <ApplicationVersion>52</ApplicationVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.19041.0|ARM64'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.19041.0|x64'">
+    <ApplicationDisplayVersion>52.0</ApplicationDisplayVersion>
+    <ApplicationVersion>52</ApplicationVersion>
+  </PropertyGroup>
+
+  <!-- Windows 用の AppxBundle 出力を有効化 -->
+  <PropertyGroup Condition="'$(TargetFramework)'=='net9.0-windows10.0.19041.0'">
+    <!-- Always で .msixbundle を作成 -->
+    <AppxBundle>Always</AppxBundle>
+    <!-- 作成するアーキテクチャを指定（必要なら x86 を追加） -->
+    <AppxBundlePlatforms>x64;arm64</AppxBundlePlatforms>
+    <!-- 出力先（任意） -->
+    <PackageOutputPath>$(MSBuildThisFileDirectory)artifacts\windows</PackageOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net9.0-maccatalyst' and '$(Platform)'=='x64'">
+    <!-- x64 ビルド時は maccatalyst-x64 を使う -->
+    <RuntimeIdentifier>maccatalyst-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
