@@ -204,10 +204,10 @@
   <!-- 残りの設定（Resources, Fonts, Images など）は既存のまま -->
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\appicon.png" />
+		<MauiIcon Include="Resources\AppIcon\appicon.png" BaseSize="1024,1024" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\appicon.png" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\\splash\splash.png" Color="#512BD4" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />

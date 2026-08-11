@@ -6,11 +6,7 @@
     <string>FMES</string>
 
     <key>CFBundleIdentifier</key>
-    <string>jp.5ms.fmes</string>
-
-    <!-- アプリアイコンのひも付け（一番外側のdict直下に置く） -->
-    <key>XSAppIconAssets</key>
-    <string>Assets.xcassets/appicon.appiconset</string>
+    <string>com.companyname.fmes</string>
 
     <!-- カメラ権限の追加 -->
     <key>NSCameraUsageDescription</key>
@@ -32,28 +28,7 @@
                     <string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
                 </dict>
             </array>
-
         </dict>
     </dict>
-     <key>UIDeviceFamily</key>
-    <array>
-        <integer>1</integer>
-        <integer>2</integer>
-    </array>
-
-    <key>UISupportedInterfaceOrientations</key>
-    <array>
-        <string>UIInterfaceOrientationPortrait</string>
-        <string>UIInterfaceOrientationLandscapeLeft</string>
-        <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-
-    <key>UISupportedInterfaceOrientations~ipad</key>
-    <array>
-        <string>UIInterfaceOrientationPortrait</string>
-        <string>UIInterfaceOrientationPortraitUpsideDown</string>
-        <string>UIInterfaceOrientationLandscapeLeft</string>
-        <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>   
 </dict>
 </plist>
