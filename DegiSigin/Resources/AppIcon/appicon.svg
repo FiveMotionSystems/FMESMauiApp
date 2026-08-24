@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1A86D9"/>
+      <stop offset="100%" stop-color="#0A4FA3"/>
+    </linearGradient>
+    <linearGradient id="gGreen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#47E61F"/>
+      <stop offset="100%" stop-color="#10B818"/>
+    </linearGradient>
+    <linearGradient id="gOrange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFB12A"/>
+      <stop offset="100%" stop-color="#F48A12"/>
+    </linearGradient>
+    <linearGradient id="gPink" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF4C93"/>
+      <stop offset="100%" stop-color="#E91E63"/>
+    </linearGradient>
+    <linearGradient id="gFrame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10206A"/>
+      <stop offset="100%" stop-color="#060B3F"/>
+    </linearGradient>
+    <clipPath id="circleClip">
+      <circle cx="512" cy="512" r="480"/>
+    </clipPath>
+    <clipPath id="screenClip">
+      <rect x="230" y="270" width="564" height="438" rx="18" ry="18"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#circleClip)">
+    <circle cx="512" cy="512" r="480" fill="#ffffff" opacity="0"/>
+
+    <path d="M512 32 A480 480 0 0 1 992 512 L512 512 Z" fill="url(#gGreen)"/>
+    <path d="M992 512 A480 480 0 0 1 512 992 L512 512 Z" fill="url(#gPink)"/>
+    <path d="M512 992 A480 480 0 0 1 32 512 L512 512 Z" fill="url(#gOrange)"/>
+    <path d="M32 512 A480 480 0 0 1 512 32 L512 512 Z" fill="url(#gBlue)"/>
+
+    <rect x="505" y="24" width="14" height="484" fill="#ffffff"/>
+    <rect x="505" y="516" width="14" height="484" fill="#ffffff"/>
+    <rect x="24" y="505" width="484" height="14" fill="#ffffff"/>
+    <rect x="516" y="505" width="484" height="14" fill="#ffffff"/>
+
+    <!-- Monitor -->
+    <rect x="173" y="244" width="678" height="570" rx="46" ry="46" fill="url(#gFrame)" stroke="#ffffff" stroke-width="10"/>
+    <rect x="201" y="272" width="622" height="514" rx="26" ry="26" fill="#ffffff"/>
+    <rect x="395" y="814" width="234" height="34" rx="17" ry="17" fill="url(#gFrame)"/>
+    <rect x="488" y="790" width="48" height="72" rx="16" ry="16" fill="url(#gFrame)"/>
+    <rect x="444" y="842" width="136" height="30" rx="15" ry="15" fill="url(#gFrame)"/>
+
+    <!-- Tiles background -->
+    <g clip-path="url(#screenClip)">
+      <rect x="230" y="270" width="564" height="438" fill="#ffffff"/>
+      <rect x="246" y="286" width="256" height="192" rx="16" fill="url(#gBlue)"/>
+      <rect x="520" y="286" width="256" height="192" rx="16" fill="url(#gGreen)"/>
+      <rect x="246" y="496" width="256" height="192" rx="16" fill="url(#gOrange)"/>
+      <rect x="520" y="496" width="256" height="192" rx="16" fill="url(#gPink)"/>
+
+      <rect x="498" y="286" width="8" height="402" fill="#ffffff"/>
+      <rect x="246" y="478" width="530" height="8" fill="#ffffff"/>
+
+      <!-- Tile 1: phone + wifi -->
+      <rect x="300" y="340" width="72" height="124" rx="14" fill="none" stroke="#ffffff" stroke-width="12"/>
+      <circle cx="336" cy="452" r="7" fill="#ffffff"/>
+      <path d="M400 362 C428 362 450 382 456 410" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+      <path d="M390 384 C410 384 426 398 432 416" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+      <path d="M382 406 C394 406 404 414 408 424" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+
+      <!-- Tile 2: operator + conveyor -->
+      <circle cx="625" cy="349" r="22" fill="#ffffff"/>
+      <path d="M594 390 L612 364 L642 364 L676 390 L652 402 L640 388 L636 418 L592 418 Z" fill="#ffffff"/>
+      <rect x="650" y="374" width="56" height="66" fill="#ffffff"/>
+      <circle cx="633" cy="442" r="10" fill="#ffffff"/>
+      <circle cx="660" cy="442" r="10" fill="#ffffff"/>
+      <circle cx="687" cy="442" r="10" fill="#ffffff"/>
+      <circle cx="714" cy="442" r="10" fill="#ffffff"/>
+      <circle cx="741" cy="442" r="10" fill="#ffffff"/>
+      <path d="M620 460 H744" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+      <path d="M744 460 l-18 -12 v24 z" fill="#ffffff"/>
+
+      <!-- Tile 3: gear -->
+      <g transform="translate(374 598)">
+        <circle cx="0" cy="0" r="40" fill="#ffffff"/>
+        <circle cx="0" cy="0" r="20" fill="url(#gOrange)"/>
+        <g fill="#ffffff">
+          <rect x="-7" y="-74" width="14" height="26" rx="6"/>
+          <rect x="-7" y="48" width="14" height="26" rx="6"/>
+          <rect x="-74" y="-7" width="26" height="14" rx="6"/>
+          <rect x="48" y="-7" width="26" height="14" rx="6"/>
+          <rect x="-52" y="-52" width="14" height="26" rx="6" transform="rotate(-45)"/>
+          <rect x="38" y="-52" width="14" height="26" rx="6" transform="rotate(45)"/>
+          <rect x="-52" y="26" width="14" height="26" rx="6" transform="rotate(45)"/>
+          <rect x="38" y="26" width="14" height="26" rx="6" transform="rotate(-45)"/>
+        </g>
+        <path d="M-96 -32 A104 104 0 0 1 -24 -92" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+        <path d="M-24 -92 l-18 2 l11 14 z" fill="#ffffff"/>
+        <path d="M96 32 A104 104 0 0 1 24 92" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+        <path d="M24 92 l18 -2 l-11 -14 z" fill="#ffffff"/>
+      </g>
+
+      <!-- Tile 4: touch network -->
+      <circle cx="625" cy="598" r="38" fill="none" stroke="#ffffff" stroke-width="8"/>
+      <path d="M625 636 L615 700 L645 690 L665 724 L688 712 L674 674 L708 654 Z" fill="#ffffff"/>
+      <path d="M625 598 L556 568" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+      <path d="M625 598 L693 568" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+      <path d="M625 598 L556 628" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+      <path d="M625 598 L693 628" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="546" cy="564" r="7" fill="#ffffff"/>
+      <circle cx="704" cy="564" r="7" fill="#ffffff"/>
+      <circle cx="546" cy="632" r="7" fill="#ffffff"/>
+      <circle cx="704" cy="632" r="7" fill="#ffffff"/>
+    </g>
+  </g>
+</svg>
